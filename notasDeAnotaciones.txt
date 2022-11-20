@@ -1,0 +1,23 @@
+Aquí no se incluyen todas las anotaciones, sino sólo aquellas que
+se considera pertinente describir o explicar
+
+@Service
+define una clase como servicio. Es una notacion necesaria
+
+@Autowired
+Inyecta una instancia de la dependencia (la variable), que se creara una vez en el spring container y se reutilizará,
+en lugar de tener que crear una instancia cada vez que se ejecute un servicio
+
+@Data
+Anotacion de lombok que crea getters, setters, toString, equalsTo, y hashCode. 
+
+@NoArgsConstructor
+Crea un constuctor vacío salvo que haya variables final o con @NonNull,
+es decir, argumentos requeridos o constantes. Tambien lanza mensaje de error si ya se incluyó dicho constructor en el código
+
+@Column(name = "nombre de columna en BD")
+mappea una columna de la BD respecto de una variable. Si se crea la tabla, crea una columna con este nombre, 
+que no tiene que coincidir con el de la variable. NO ES NECESARIA
+
+@RequestBody
+Indica que la peticion debe mandar obligatoriamente el tipo de dato solicitado como argumento

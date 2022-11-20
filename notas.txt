@@ -1,0 +1,4 @@
+Cuando se generan las tablas con hibernate version 5.0 para mySql, si queremos campos con autoincrement; se pueden usar las estrategias AUTO y IDENTITY
+
+De usar AUTO, se generará una tabla llamada hibernate_sequence para este fin.
+Si se quiere evitar la tabla hibernate_sequence, utilizar la estrategia IDENTITY
