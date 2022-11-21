@@ -1,0 +1,43 @@
+
+MÉTODO 1. Funciona para toda la aplicación
+
+En la clase que hace correr la aplicación; en este caso "MyClosetApplication.java"escribir el siguiente fragmento de código.
+
+@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				//registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("/**").allowedMethods("*").allowedHeaders("*"); //acepta todos los orígenes
+			}
+		};
+	}
+
+    addMapping:
+    contiene la ruta de mapeado de la/s clase/s que se van a permitir llamar; es decir el valor de @RequestMapping. Ejemplo:
+    Si se quisiera llamar a las clases con @RequestMapping(value="api/nombreMapeoControlador), se escribiría
+    addMapping("/api/**)
+    Si se quiere dar acceso a todas las clases usar add Mapping("/**")
+
+    allowedOrigins:
+    indica el/los dominio/s de origen admitidos. Si se quieren permitir todos, usar "/**", aunque no se debe hacer esto en producción,
+    pues cualquiera podría acceder al back-end. En su lugar escribir el/los dominio/s donde este alojado el front-end. 
+    ejemplo con varios dominios:
+    allowedOrigins("http://domain1.com","http://domain2.com", "http://domain3.com")
+
+    allowedMethods:
+    Indica el tipo de métodos que permite pasar. Puede valer "POST", "GET" o cualquier otro. En caso de permitir todos usar "*"
+
+    allowedHeaders:
+    Indica el tipo de headers que se admiten
+
+METODO 2. Funciona para un método en particular
+
+Escribir sobre un método; en el controlador, la siguiente línea
+
+@CrossOrigin(origins = "http://localhost:9000")
+@GetMapping(value = "listar")
+    public ResponseEntity<List<Pais>> getAllPaises(){
+        return ResponseEntity.status(HttpStatus.OK).body(paisService.findAll());
+    }
